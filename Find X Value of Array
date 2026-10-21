@@ -1,0 +1,27 @@
+long long* resultArray(int* nums, int numsSize, int k, int* returnSize) {
+    long long* result = (long long*)calloc(k, sizeof(long long));
+    long long* dp = (long long*)calloc(
+        k, sizeof(long long));  // Initial state: no elements have been
+                                // processed, so no non-empty subarray exists.
+    long long* ndp = (long long*)malloc(k * sizeof(long long));
+
+    for (int i = 0; i < numsSize; i++) {
+        memset(ndp, 0,
+               k * sizeof(long long));  // Current-layer state (rolling array).
+        ndp[nums[i] % k]++;
+        for (int r = 0; r < k; r++) {
+            ndp[(int)(((long long)r * nums[i]) % k)] += dp[r];
+        }
+        memcpy(dp, ndp, k * sizeof(long long));  // Update the state.
+
+        // Accumulate the answer.
+        for (int r = 0; r < k; r++) {
+            result[r] += dp[r];
+        }
+    }
+
+    free(dp);
+    free(ndp);
+    *returnSize = k;
+    return result;
+}
