@@ -1,38 +1,4 @@
-static inline int min(int a, int b) { return a < b ? a : b; }
-
-// Minimum Operations to Sort a Permutation
-int minOperationsToSortAPermutation(int* nums, int numsSize) {
-    const int n = numsSize;
-    if (n == 1) {
-        return 0;
-    }
-
-    int start = 0;
-    while (nums[start] != 0) {
-        start++;
-    }
-
-    bool asc = true;
-    bool desc = true;
-
-    for (int i = 1; i < n; i++) {
-        const int value = nums[(start + i) % n];
-
-        if (value != i) {
-            asc = false;
-        }
-        if (value != n - i) {
-            desc = false;
-        }
-
-        if (!asc && !desc) {
-            return -1;
-        }
-    }
-
-    if (asc) {
-        return min(start, n - start + 2);
-    }
-
-    return min(n - start, start + 2);
-}
+/*
+ * Duplicate of "Minimum Operations to Sort a Permutation.c".
+ * This file has been cleared to avoid duplicate implementation.
+ */
