@@ -1,6 +1,7 @@
 static inline int min(int a, int b) { return a < b ? a : b; }
 
-int minOperations(int* nums, int numsSize) {
+// Minimum Operations to Sort a Permutation
+int minOperationsToSortAPermutation(int* nums, int numsSize) {
     const int n = numsSize;
     if (n == 1) {
         return 0;
